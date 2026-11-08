@@ -104,26 +104,30 @@
   function setStatus(el, kind, html) { el.className = "status is-" + kind; el.innerHTML = html; }
   function fallbackHTML() { return "Sorry, that didn't go through just now. Please email me directly at <a href=\"mailto:" + EMAIL + "\">" + EMAIL + "</a>."; }
 
-  /* Brevo demo signup */
+  /* Brevo demo signup: normal POST into a hidden frame (no browser blocking) */
   var demo = document.querySelector("#demo-form");
-  if (demo) {
+  var sink = document.querySelector("iframe[name=brevo-sink]");
+  if (demo && sink) {
     var dStatus = demo.querySelector(".status");
     var dBtn = demo.querySelector("button[type=submit]");
     var dHTML = dBtn.innerHTML;
+    var waiting = false, timer = null;
+    sink.addEventListener("load", function () {
+      if (!waiting) return;
+      waiting = false; clearTimeout(timer);
+      demo.reset(); dBtn.disabled = false; dBtn.innerHTML = dHTML;
+      setStatus(dStatus, "ok", "<b>You're in.</b> Check your inbox for my first email. If you don't see it in a few minutes, look in Promotions or Spam and drag it to your main inbox.");
+    });
     demo.addEventListener("submit", function (e) {
-      e.preventDefault();
-      if (demo.querySelector("[name=email_address_check]").value) return;
-      if (!demo.checkValidity()) { demo.reportValidity(); return; }
-      dBtn.disabled = true; dBtn.textContent = "Joining…";
-      fetch(demo.action + "?isAjax=1", { method: "POST", body: new FormData(demo) })
-        .then(function (r) { return r.json(); })
-        .then(function (j) {
-          if (j && j.success === false) throw new Error(j.message || "failed");
-          demo.reset();
-          setStatus(dStatus, "ok", "<b>You're in.</b> Check your inbox for my first email. If you don't see it in a few minutes, look in Promotions or Spam and drag it to your main inbox.");
-        })
-        .catch(function () { setStatus(dStatus, "err", fallbackHTML()); })
-        .then(function () { dBtn.disabled = false; dBtn.innerHTML = dHTML; });
+      if (demo.querySelector("[name=email_address_check]").value) { e.preventDefault(); return; }
+      if (!demo.checkValidity()) { e.preventDefault(); demo.reportValidity(); return; }
+      waiting = true; dBtn.disabled = true; dBtn.textContent = "Joining…";
+      dStatus.className = "status";
+      timer = setTimeout(function () {
+        if (!waiting) return;
+        waiting = false; dBtn.disabled = false; dBtn.innerHTML = dHTML;
+        setStatus(dStatus, "err", fallbackHTML());
+      }, 15000);
     });
   }
 
