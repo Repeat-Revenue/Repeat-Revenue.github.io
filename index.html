@@ -249,16 +249,43 @@
           <li>Unsubscribe with one click, any time</li>
         </ul>
       </div>
-      <iframe name="brevo-sink" title="Sign-up" hidden></iframe>
-      <form id="demo-form" class="form form--stack" action="https://1104721f.sibforms.com/serve/MUIFABc9bJ0QUUzVZMtaSuWE7nl0hZmuAhGsGfpOV4i1RUaO5aIm1nxpOx-IEJJSjIfhDhDZYoAIm1T3VweXh-SZzCjCgd354m0HkvnIDgW7oHocQiS-l3E-YiFwCUh0qTC7Sy0kvbZ6H8mIwCNPZb3xH0fpi0bcNGeVapq4h4G1mhr_Rqe95y9PuuFgZlfktrpUF9fQEKiDwhNiuw==" method="POST" target="brevo-sink" novalidate>
-        <div class="field"><label for="d-name">First name</label><input id="d-name" name="FIRSTNAME" type="text" autocomplete="given-name" required></div>
-        <div class="field"><label for="d-email">Email</label><input id="d-email" name="EMAIL" type="email" autocomplete="email" required></div>
-        <input class="hp" type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <input type="hidden" name="locale" value="en">
-        <button class="btn btn--primary" type="submit">Send me the emails <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-        <p class="fine">You'll get my welcome sequence and occasional emails about email marketing. Read the <a href="audit.html#privacy">privacy notice</a>.</p>
-        <div class="status" role="status" aria-live="polite"></div>
-      </form>
+      <div class="demo__form">
+      <div class="sib-form">
+        <div id="sib-form-container" class="sib-form-container">
+          <div id="error-message" class="sib-form-message-panel status is-err"><div class="sib-form-message-panel__text"><span class="sib-form-message-panel__inner-text">Sorry, that didn't go through. Please try again, or email me at rapheal.i.chukwuka@gmail.com.</span></div></div>
+          <div id="success-message" class="sib-form-message-panel status is-ok"><div class="sib-form-message-panel__text"><span class="sib-form-message-panel__inner-text"><b>You're in.</b> Check your inbox for my first email. If you don't see it in a few minutes, look in Promotions or Spam.</span></div></div>
+          <div id="sib-container">
+            <form id="sib-form" class="form form--stack" method="POST" action="https://1104721f.sibforms.com/serve/MUIFABc9bJ0QUUzVZMtaSuWE7nl0hZmuAhGsGfpOV4i1RUaO5aIm1nxpOx-IEJJSjIfhDhDZYoAIm1T3VweXh-SZzCjCgd354m0HkvnIDgW7oHocQiS-l3E-YiFwCUh0qTC7Sy0kvbZ6H8mIwCNPZb3xH0fpi0bcNGeVapq4h4G1mhr_Rqe95y9PuuFgZlfktrpUF9fQEKiDwhNiuw==" data-type="subscription" novalidate="true">
+              <div class="sib-input sib-form-block"><div class="form__entry entry_block field"><div class="form__label-row">
+                <label class="entry__label" for="FIRSTNAME" data-required="*">First name</label>
+                <div class="entry__field"><input class="input" maxlength="200" type="text" id="FIRSTNAME" name="FIRSTNAME" autocomplete="given-name" data-required="true" required></div>
+              </div><label class="entry__error entry__error--primary"></label></div></div>
+              <div class="sib-input sib-form-block"><div class="form__entry entry_block field"><div class="form__label-row">
+                <label class="entry__label" for="EMAIL" data-required="*">Email</label>
+                <div class="entry__field"><input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="email" inputmode="email" data-required="true" required></div>
+              </div><label class="entry__error entry__error--primary"></label></div></div>
+              <div class="sib-form-block"><button class="btn btn--primary sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit"><svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512" aria-hidden="true"><path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z"/></svg>Send me the emails</button></div>
+              <input type="text" name="email_address_check" value="" class="input--hidden" aria-hidden="true" tabindex="-1" autocomplete="off">
+              <input type="hidden" name="locale" value="en">
+            </form>
+          </div>
+        </div>
+      </div>
+      <p class="fine" style="margin-top:14px">You'll get my welcome sequence and occasional emails about email marketing. Read the <a href="audit.html#privacy">privacy notice</a>.</p>
+      <script>
+        window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
+        window.LOCALE = 'en';
+        window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "Please enter a valid email address.";
+        window.REQUIRED_ERROR_MESSAGE = "This field can't be left blank.";
+        window.GENERIC_INVALID_MESSAGE = "Please check this field and try again.";
+        window.INVALID_NUMBER = "Please check this field and try again.";
+        window.INVALID_DATE = "Please enter a valid date";
+        window.REQUIRED_MULTISELECT_MESSAGE = 'Please select at least 1 option';
+        window.translation = { common: { selectedList: '{quantity} list selected', selectedLists: '{quantity} lists selected', selectedOption: '{quantity} selected', selectedOptions: '{quantity} selected' } };
+        var AUTOHIDE = Boolean(0);
+      </script>
+      <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+      </div>
     </div>
   </div>
 </section>

@@ -405,3 +405,16 @@ dialog.reader[open] { animation: pop .45s var(--ease); }
   .js [data-reveal], .js .split .w > span { opacity: 1; transform: none; }
   .mail, .tag { opacity: 1; transform: none; }
 }
+
+/* Brevo form (uses Brevo's own script) */
+.sib-form .sib-form-message-panel.status { display: none; margin-bottom: 14px; }
+.sib-form .sib-form-message-panel.status.sib-form-message-panel--active { display: block; }
+.sib-form-block { display: block; }
+.sib-input .form__label-row { display: grid; gap: 7px; }
+.input--hidden { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; opacity: 0; }
+.entry__error { display: none; font-size: 13.5px; color: var(--coral-2); margin-top: 4px; }
+.entry__error:not(:empty) { display: block; }
+.sib-form .btn { width: 100%; }
+.sib-form .sib-hide-loader-icon { display: none; }
+.sib-form .progress-indicator__icon { width: 18px; height: 18px; fill: currentColor; animation: spin 1s linear infinite; }
+.demo .sib-form { min-width: 0; }
